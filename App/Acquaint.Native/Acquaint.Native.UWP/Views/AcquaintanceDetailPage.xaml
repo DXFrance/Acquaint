@@ -1,0 +1,63 @@
+﻿<Page
+    x:Class="Acquaint.Native.UWP.Views.AcquaintanceDetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Acquaint.Native.UWP.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Rectangle Fill="#FF547799"/>
+        <StackPanel Orientation="Horizontal">
+            <FontIcon Glyph="" FontFamily="Segoe MDL2 Assets" Foreground="White" FontSize="28" Margin="12,0" Tapped="OnBack"/>
+            <TextBlock Text="{x:Bind Item.DisplayName, Mode=OneWay}" 
+                       Style="{ThemeResource SubheaderTextBlockStyle}"
+                       Foreground="White"
+                       FontSize="28"
+                       VerticalAlignment="Center" Margin="12"/>
+        </StackPanel>
+        <Grid Grid.Row="1" Margin="12,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Ellipse Width="100" Height="100">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="{x:Bind Item.PhotoUrl, Mode=OneWay}" Stretch="UniformToFill"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <StackPanel Grid.Column="1" Margin="12,12">
+                <TextBlock Text="{x:Bind Item.Company}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                <TextBlock Text="{x:Bind Item.JobTitle}" Style="{ThemeResource SubtitleTextBlockStyle}" Opacity="0.7"/>
+                <TextBlock Text="{x:Bind Item.Street}" Style="{ThemeResource BodyTextBlockStyle}" Margin="36,6,0,0"/>
+                <TextBlock Text="{x:Bind Item.City}" Style="{ThemeResource BodyTextBlockStyle}" Margin="36,0,0,0"/>
+                <TextBlock Margin="36,0,0,0" Style="{ThemeResource BodyTextBlockStyle}">
+                    <Run Text="{x:Bind Item.State}"/>
+                    <Run Text=", "/>
+                    <Run Text="{x:Bind Item.PostalCode}"/>
+                </TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                    <SymbolIcon Symbol="Phone" Foreground="#FF547799"/>
+                    <TextBlock Text="{x:Bind Item.Phone}" Margin="12,0" Style="{ThemeResource FlyoutPickerTitleTextBlockStyle}" Opacity="0.7"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                    <SymbolIcon Symbol="Mail" Foreground="#FF547799"/>
+                    <TextBlock Text="{x:Bind Item.Email}" Margin="12,0" Style="{ThemeResource FlyoutPickerTitleTextBlockStyle}" Opacity="0.7"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <maps:MapControl x:Name="map" Grid.Row="2" MapServiceToken="BXkyIyJnXBIbzIb2EEwW~mNoI7d9yWic20hAIafm8Ng~An-qXMCnwqCoJ4ma7IL4I9JWPK8pl6qphF2SeYlI4NKKah7IjeTQ59B75G1D05Hb"/>
+        <CommandBar Grid.Row="3" Background="#FF547799" Foreground="White">
+            <AppBarButton Icon="Edit" Label="Edit" Foreground="White"/>
+            <AppBarButton Icon="Delete" Label="Delete" Foreground="White"/>
+        </CommandBar>
+    </Grid>
+</Page>
