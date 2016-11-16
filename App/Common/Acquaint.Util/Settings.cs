@@ -86,7 +86,7 @@ namespace Acquaint.Util
 		private static readonly bool ClearImageCacheIsRequestedDefault = false;
 
 		private const string HockeyAppIdKey = "HockeyAppId_key";
-		private static readonly string HockeyAppIdDefault = "11111111222222223333333344444444"; // This is just a placeholder value. Replace with your real HockeyApp App ID.
+		private static readonly string HockeyAppIdDefault = "c26f0b7aa7a24674ae412718cbf4d3fe"; // This is just a placeholder value. Replace with your real HockeyApp App ID.
 
         private const string BingMapsKeyKey = "BingMapsKey_key";
         private static readonly string BingMapsKeyDefault = "UW0peICp3gljJyhqQKFZ~R3XF1I5BvWmWmkD4ujytTA~AoUOqpk2nJB-Wh7wH-9S-zaG-w6sygLitXugNOqm71wx_nc6WHIt6Lb29gyTU04X";

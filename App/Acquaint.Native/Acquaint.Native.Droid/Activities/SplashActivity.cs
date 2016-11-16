@@ -29,7 +29,7 @@ namespace Acquaint.Native.Droid
 				// start the AcquaintanceListActivity
 				StartActivity(new Intent(Application.Context, typeof(AcquaintanceListActivity)));
 			});
-		}
-	}
+        }
+    }
 }
 

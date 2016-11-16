@@ -19,6 +19,7 @@ using FFImageLoading.Transformations;
 using FFImageLoading.Views;
 using Microsoft.Practices.ServiceLocation;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
+using HockeyApp.Android;
 
 namespace Acquaint.Native.Droid
 {
@@ -37,8 +38,10 @@ namespace Acquaint.Native.Droid
 		{
 			base.OnCreate(savedInstanceState);
 
-			// instantiate adapter
-			_Adapter = new AcquaintanceCollectionAdapter();
+            HockeyApp.MetricsManager.TrackEvent("AcquaintanceListActivity.OnCreate");
+
+            // instantiate adapter
+            _Adapter = new AcquaintanceCollectionAdapter();
 
 			// instantiate the layout manager
 			var layoutManager = new LinearLayoutManager(this);
@@ -72,12 +75,42 @@ namespace Acquaint.Native.Droid
 
 			var addButton = (FloatingActionButton)FindViewById(Resource.Id.acquaintanceListFloatingActionButton);
 
-			addButton.Click += (sender, e) => {
-				StartActivity(new Intent(this, typeof(AquaintanceEditActivity)));
-			};
-		}
+            FeedbackManager.Register(this, Settings.HockeyAppId);
 
-		protected override async void OnResume()
+            addButton.Click += (sender, e) => {
+                //StartActivity(new Intent(this, typeof(AquaintanceEditActivity)));
+                FeedbackManager.ShowFeedbackActivity(ApplicationContext);
+            };
+
+            CheckForUpdates();
+        }
+
+        void CheckForUpdates()
+        {
+            // Remove this for store builds!
+            UpdateManager.Register(this, Settings.HockeyAppId);
+        }
+
+        void UnregisterManagers()
+        {
+            UpdateManager.Unregister();
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+
+            UnregisterManagers();
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            UnregisterManagers();
+        }
+
+        protected override async void OnResume()
 		{
 			base.OnResume();
 

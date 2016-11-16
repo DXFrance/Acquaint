@@ -8,9 +8,10 @@ using Android.OS;
 using Android.Runtime;
 using Autofac;
 using Autofac.Extras.CommonServiceLocator;
-using HockeyApp.Android;
 using Microsoft.Practices.ServiceLocation;
 using Plugin.CurrentActivity;
+using HockeyApp.Android;
+using HockeyApp.Android.Metrics;
 
 namespace Acquaint.Native.Droid
 {
@@ -37,6 +38,9 @@ namespace Acquaint.Native.Droid
             base.OnCreate();
 
 			CrashManager.Register(this, Settings.HockeyAppId);
+            MetricsManager.Register(this, this, Settings.HockeyAppId);
+
+            HockeyApp.MetricsManager.TrackEvent("MainApplication.OnCreate");
 
             RegisterActivityLifecycleCallbacks(this);
         }
