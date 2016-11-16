@@ -61,7 +61,7 @@ namespace Acquaint.Native.UITest.Android
             app.Screenshot("First name updated on list screen");
         }
 
-        [Test]
+        /*[Test]
         public void UpdateLastName()
         {
             app.Screenshot("App Started");
@@ -250,7 +250,7 @@ namespace Acquaint.Native.UITest.Android
             app.Tap(x => x.Id("acquaintanceSaveButton"));
             Thread.Sleep(3000); // wait 3 seconds to give map time to fully render
             app.Screenshot("Saved changes, navigated to detail screen, address updated");
-        }
+        }*/
     }
 }
 
